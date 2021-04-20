@@ -1,0 +1,37 @@
+DELIMITER //
+
+CREATE TRIGGER korisnici_unos
+AFTER INSERT
+   ON korisnici FOR EACH ROW
+
+BEGIN
+
+   DECLARE id int(3);
+
+   
+   SELECT id_korisnika FROM korisnici ORDER BY id_korisnika DESC LIMIT 1 INTO id;
+
+
+   INSERT INTO korisnici_uloge
+   ( id_uloge,id_korisnika)
+   VALUES
+   ( 1,id);
+
+END; //
+
+DELIMITER ;
+
+
+
+CREATE TRIGGER korisnici_nakon_brisanja AFTER DELETE ON korisnici
+ FOR EACH ROW
+
+BEGIN
+   DECLARE id int(3);
+   
+   SELECT ku.id_korisnika FROM korisnici k RIGHT JOIN korisnici_uloge ku ON k.id_korisnika=ku.id_korisnika WHERE k.id_korisnika IS NULL ORDER BY ku.id_korisnika DESC LIMIT 1 INTO id;
+
+  DELETE FROM korisnici_uloge
+  WHERE id_korisnika=id;
+
+END
