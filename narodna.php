@@ -121,7 +121,7 @@ include('funkcije.inc');
 			$rez1 = mysqli_query($konekcija,$upit1) or die(mysqli_error($konekcija));
 			$r1 = mysqli_fetch_array($rez1);
 			echo "<p style='padding-top:20px;font-size:35px;' align='center'>".$r1['izvodjac']." - ".$r1['naziv_pesme']."</p></br></br></br>";
-			echo "<div id='objedinjeno'><div id='pesma_tekst'>".$r1['tekst_pesme']."<br/><br/><b><p style='color:#3434c3;' align='center'>Hvala ".$r1['korisnicko_ime']."</p></b></div>";
+			echo "<div id='objedinjeno'><div id='pesma_tekst'>".$r1['tekst_pesme']."<br/><br/><b><p style='color:#3434c3;' align='center'>Hvala ".$r1['korisnicko_ime']."</p></b><i>...</i></div>";
 			
 			if($r1['link']!=null)
 			{	
