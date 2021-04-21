@@ -8,5 +8,3 @@ if($email)
  echo "Poslato";
 else
  echo "Nije poslato";
- 
- <b> Ovo je nesto novo </b>
